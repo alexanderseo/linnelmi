@@ -1,0 +1,22 @@
+{% load static %}
+{% load thumbnail %}
+
+<div class="widget-wrap fl-wrap">
+    <h4 class="widget-title"><span>01.</span> Последние записи</h4>
+    <div class="widget-container fl-wrap">
+        <div class="widget-posts fl-wrap">
+            <ul>
+                    {% for article in posts_mini %}
+                    <li class="clearfix">
+                        <a href="{{ article.get_absolute_url }}"  class="widget-posts-img"><img src="{% if article.img_post %}{{ article.img_post|thumbnail_url:"miniblog" }}{% else %}{% static 'images/folio/1.jpg' %}{% endif %}" class="respimg" alt=""></a>
+                        <div class="widget-posts-descr">
+                            <a href="{{ article.get_absolute_url }}" title="">{{ article.name }}</a>
+                            <span class="widget-posts-date">{{ article.date_pub|date:"d M Y" }}</span>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+

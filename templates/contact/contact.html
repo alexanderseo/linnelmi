@@ -1,0 +1,197 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load thumbnail %}
+{% block title %}
+    {% for contitle in contactinfo %}
+        {{ contitle.title }}
+    {% endfor %}
+{% endblock %}
+{% block META_description %}
+    {% spaceless %}
+        {% for contitle in contactinfo %}
+            {{ contitle.description }}
+        {% endfor %}
+    {% endspaceless %}
+{% endblock %}
+{% block content %}
+<!--wrapper-->
+            <div id="wrapper" class="single-page-wrap">
+                <!-- Content-->
+                <div class="content">
+                    <div class="single-page-decor"></div>
+                    <div class="single-page-fixed-row">
+                        <div class="scroll-down-wrap">
+                            <div class="mousey">
+                                <div class="scroller"></div>
+                            </div>
+                            <span>Прокручивай вниз</span>
+                        </div>
+                        <a href="{% url 'home:index' %}" class="single-page-fixed-row-link"><i class="fal fa-arrow-left"></i> <span>Обратно на главную</span></a>
+                    </div>
+                    <!-- section-->
+                    <section class="parallax-section dark-bg sec-half parallax-sec-half-right" data-scrollax-parent="true">
+                        {% for backgraund in contactinfo %}
+                        <div class="bg par-elem"  data-bg="{{ backgraund.contactimg|thumbnail_url:'slide' }}" data-scrollax="properties: { translateY: '30%' }"></div>
+                        {% endfor %}
+                        <div class="overlay"></div>
+                        <div class="pattern-bg"></div>
+                        <div class="container">
+                            <div class="section-title">
+                                {% for info in contactinfo %}
+                                <h2>{{ info.name|safe }}</h2>
+                                <p>{{ info.minidescription }}</p>
+                                {% endfor %}
+                                <div class="horizonral-subtitle"><span>Contacts</span></div>
+                            </div>
+                        </div>
+                        <a href="#sec1" class="custom-scroll-link hero-start-link"><span>Let's Start</span> <i class="fal fa-long-arrow-down"></i></a>
+                    </section>
+                    <!-- section end-->
+                    <!-- section end-->
+                    <section data-scrollax-parent="true" id="sec1">
+                        <div class="section-subtitle"  data-scrollax="properties: { translateY: '-250px' }" >ENGLISH<span>//</span></div>
+                        <div class="container">
+                            <!-- contact details -->
+                            <div class="fl-wrap   mar-bottom">
+                                <div class="row">
+                                    {% for contacty in contactinfo %}
+                                    <div class="col-md-3">
+                                        <div class="pr-title fl-wrap">
+
+                                            <h3>{{ contacty.contacttitle }}</h3>
+                                            <span>{{ contacty.contactdescription }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <!-- features-box-container -->
+                                        <div class="features-box-container single-serv fl-wrap">
+                                            <div class="row">
+                                                <!--features-box -->
+                                                <div class="features-box col-md-4">
+                                                    <div class="time-line-icon">
+                                                        <i class="fal fa-mobile-android"></i>
+                                                    </div>
+                                                    <h3>{{ contacty.phonename }}</h3>
+                                                    <a href="{{ contacty.phone }}">{{ contacty.phone }}</a>
+                                                </div>
+                                                <!-- features-box end  -->
+                                                <!--features-box -->
+                                                <div class="features-box col-md-4">
+                                                    <div class="time-line-icon">
+                                                        <i class="fal fa-compass"></i>
+                                                    </div>
+                                                    <h3>{{ contacty.adressname }}</h3>
+                                                    <a href="#">{{ contacty.adress }}</a>
+                                                </div>
+                                                <!-- features-box end  -->
+                                                <!--features-box -->
+                                                <div class="features-box col-md-4">
+                                                    <div class="time-line-icon">
+                                                        <i class="fal fa-envelope-open"></i>
+                                                    </div>
+                                                    <h3>{{ contacty.nameemail }}</h3>
+                                                    <a href="#">{{ contacty.email }}</a>
+                                                </div>
+                                                <!-- features-box end  -->
+                                            </div>
+                                        </div>
+                                        <!-- features-box-container end  -->
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <!-- contact details end  -->
+
+                            <div class="fl-wrap mar-top">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="pr-title fl-wrap">
+                                            <h3>Форма обращения</h3>
+                                            <span></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div id="contact-form">
+                                          {% if sent %}
+                                          <div id="message">
+                                            {% block sentmail %}
+                                            {% endblock sentmail %}
+                                          </div>
+                                          {% else %}
+
+
+
+                                             <form  class="custom-form" action="{% url 'contact:contact' %}" method="post" name="contactform" >
+                                                {% csrf_token %}
+
+                                                  {{ form.non_field_errors }}
+
+                                                <fieldset>
+                                                    <div class="row">
+                                                        {% for formfield in form.subject %}
+                                                        <div class="col-md-6">
+                                                            <label><i class="fal fa-user"></i></label>
+                                                              {{ formfield.errors }}
+	                                                             {{ formfield }}
+                                                        </div>
+                                                        {% endfor %}
+                                                        {% for formfield in form.sender %}
+                                                        <div class="col-md-6">
+                                                            <label><i class="fal fa-envelope"></i> </label>
+                                                            {{ formfield.errors }}
+	                                                        {{ formfield }}
+                                                        </div>
+                                                        {% endfor %}
+
+                                                    </div>
+                                                    {% for formfield in form.message %}
+                                                    {{ formfield.errors }}
+	                                                   {{ formfield }}
+                                                    {% endfor %}
+
+
+                                                    <div class="clearfix"></div>
+
+
+                                                    <button type="submit" class="btn float-btn flat-btn color-btn" id="submit"/>Отправить сообщение</button>
+
+                                                </fieldset>
+                                            </form>
+
+                                            {% endif %}
+                                        </div>
+                                        <!-- contact form  end-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-parallax-module" data-position-top="70"  data-position-left="20" data-scrollax="properties: { translateY: '-250px' }"></div>
+                        <div class="bg-parallax-module" data-position-top="40"  data-position-left="70" data-scrollax="properties: { translateY: '150px' }"></div>
+                        <div class="bg-parallax-module" data-position-top="80"  data-position-left="80" data-scrollax="properties: { translateY: '350px' }"></div>
+                        <div class="bg-parallax-module" data-position-top="95"  data-position-left="40" data-scrollax="properties: { translateY: '-550px' }"></div>
+                        <div class="sec-lines"></div>
+                    </section>
+                    <!-- section end-->
+                    <!-- section-->
+                    <section class="dark-bg2 small-padding order-wrap">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h3>Find me on social networks : </h3>
+                                </div>
+                                <div class="col-md-4">
+                                    <ul >
+                                        <li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                                        <li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                                        <li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                                        <li><a href="#" target="_blank"><i class="fab fa-vk"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- section end-->
+                </div>
+                <!-- Content end -->
+
+{% endblock content %}

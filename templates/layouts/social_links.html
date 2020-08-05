@@ -1,0 +1,8 @@
+<ul >
+    {% for soc in soc_link %}
+    <li><a href="{{ soc.linkfb }}" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+    <li><a href="{{ soc.linkinst}}" target="_blank"><i class="fab fa-instagram"></i></a></li>
+    <li><a href="{{ soc.linktw }}" target="_blank"><i class="fab fa-twitter"></i></a></li>
+    <li><a href="{{ soc.linkvk }}" target="_blank"><i class="fab fa-vk"></i></a></li>
+    {% endfor %}
+</ul>

@@ -1,0 +1,17 @@
+{% for fcinfo in f_c_info %}
+<div class="footer-header fl-wrap">{{ fcinfo.name_on_site }}</div>
+
+<div class="footer-box fl-wrap">
+
+    <div class="subcribe-form fl-wrap">
+
+    </div>
+
+    <div class="footer-contacts fl-wrap">
+        <ul>
+            <li><i class="fal fa-phone"></i><span>Phone :</span><a href="#">{{ fcinfo.telefone }}</a></li>
+            <li><i class="fal fa-envelope"></i><span>Email :</span><a href="#">{{ fcinfo.email }}</a></li>
+            <li><i class="fal fa-map-marker"></i><span>Address</span><a href="#">{{ fcinfo.adress }}</a></li>
+        </ul>
+    </div>
+{%  endfor %}

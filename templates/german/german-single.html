@@ -1,0 +1,107 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load thumbnail %}
+{% block title %}
+    {{ detailgerman.title }}
+{% endblock %}
+{% block content %}
+<!--wrapper-->
+            <div id="wrapper" class="single-page-wrap">
+                <!-- Content-->
+                <div class="content">
+                    <div class="single-page-decor"></div>
+                    <div class="single-page-fixed-row">
+                        <div class="scroll-down-wrap">
+                            <div class="mousey">
+                                <div class="scroller"></div>
+                            </div>
+                            <span>Прокручивай вниз</span>
+                        </div>
+                        <a href="{% url 'home:index' %}" class="single-page-fixed-row-link"><i class="fal fa-arrow-left"></i> <span>Обратно на главную</span></a>
+                    </div>
+                    <!-- section-->
+                    <section class="parallax-section dark-bg sec-half parallax-sec-half-right" data-scrollax-parent="true">
+                        <div class="bg par-elem"  data-bg="{{ detailgerman.bigimg|thumbnail_url:'slide' }}" data-scrollax="properties: { translateY: '30%' }"></div>
+                        <div class="overlay"></div>
+                        <div class="pattern-bg"></div>
+                        <div class="container">
+                            <div class="section-title">
+                                <h2>{{ detailgerman.h1|safe }}</h2>
+                                <p style="font-size: 14px;">{{ detailgerman.minitext }}</p>
+                                <div class="horizonral-subtitle"><span>Lesson</span></div>
+                            </div>
+                            <a href="#sec1" class="custom-scroll-link hero-start-link"><span>Let's Start</span> <i class="fal fa-long-arrow-down"></i></a>
+                        </div>
+                    </section>
+                    <!-- section end-->
+                    <!-- section end-->
+                    <!-- section-->
+                    <section data-scrollax-parent="true" id="sec1">
+                        <div class="section-subtitle"  data-scrollax="properties: { translateY: '-250px' }" > <span>//</span> Lesson</div>
+                        <div class="container">
+                            <div class="row mar-bottom">
+                                <div class="col-md-5">
+                                    <div class="collage-image fl-wrap">
+                                        <div class="collage-image-title" data-scrollax="properties: { translateY: '150px' }">German</div>
+                                        <img src="{{ detailgerman.uslugaimg|thumbnail_url:'oneusluga' }}" class="respimg" alt="">
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="main-about fl-wrap">
+                                        <h5>{{ detailgerman.podzagolovok }}</h5>
+                                        <h2>{{ detailgerman.h1 }}</h2>
+                                        <p>{{ detailgerman.bigtext|safe }}</p>
+
+
+
+                                    </div>
+                                    <!-- audio-player-wrap-->
+                                        <div class="audio-player-wrap fl-wrap mar-top">
+
+
+                                            <!-- audio-player-wrap end-->
+                                            <div class="playlist-wrap fl-wrap">
+                                                <ol data-listalbumtitle="Insurgency">
+                                                    {% for docu in materialdoc %}
+                                                    <li><a href="{{ docu.docfile.url }}" class="audio-link">{{ docu.title }}</a>
+                                                        <a class="downbuy-link" href="{{ docu.docfile.url }}" title="Скачать" download><i class="fal fa-download"></i></a>
+                                                    </li>
+                                                    {% endfor %}
+
+                                                </ol>
+                                            </div>
+                                            <!-- audio-player-wrap end-->
+                                        </div>
+                                        <!-- audio-player-wrap end-->
+                                </div>
+                            </div>
+                            <div class="content-nav team-nav">
+                                <ul>
+                                    <li><i class="fal fa-arrow-left"></i><span class="tooltip"></span></li>
+                                    <li>
+                                        <a href="{% url 'uslugi:uslugi' %}" class="cur-page"><span>Обратно</span></a>
+                                    </li>
+                                    <li><i class="fal fa-arrow-right"></i><span class="tooltip"></span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="bg-parallax-module" data-position-top="90"  data-position-left="25" data-scrollax="properties: { translateY: '-250px' }"></div>
+                        <div class="bg-parallax-module" data-position-top="70"  data-position-left="70" data-scrollax="properties: { translateY: '150px' }"></div>
+                        <div class="sec-lines"></div>
+                    </section>
+                    <!-- section end-->
+                    <!-- section-->
+                    <section class="dark-bg2 small-padding order-wrap">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h3>Связаться со мной</h3>
+                                </div>
+                                <div class="col-md-4"><a href="{% url 'contact:contact' %}" class="btn flat-btn color-btn">Контакты</a> </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- section end-->
+                </div>
+                <!-- Content end -->
+{% endblock content %}

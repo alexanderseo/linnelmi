@@ -1,0 +1,336 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load thumbnail %}
+{% block title %}
+    {{ seo.title }}
+{% endblock %}
+{% block META_description %}
+  {{ seo.description }}
+{% endblock %}
+{% block content %}
+
+
+<!-- wrapper-->
+            <div id="wrapper">
+                <!-- scroll-nav-wrap-->
+                <div class="scroll-nav-wrap">
+                    <div class="scroll-down-wrap">
+                        <div class="mousey">
+                            <div class="scroller"></div>
+                        </div>
+                        <span>Прокручивай вниз</span>
+                    </div>
+                    <nav class="scroll-nav scroll-init">
+                        <ul>
+                            {% for doplink in adslide %}
+                            <li><a class="scroll-link act-link" href="#sec1">{{ doplink.anchor_1 }}</a></li>
+                            <li><a class="scroll-link" href="#sec2">{{ doplink.anchor_2 }}</a></li>
+                            <li><a class="scroll-link" href="#sec3">{{ doplink.anchor_3 }}</a></li>
+                            <li><a class="scroll-link" href="#sec5">{{ doplink.anchor_4 }}</a></li>
+                            <li><a class="scroll-link" href="#sec6">{{ doplink.anchor_5 }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </nav>
+                </div>
+                <!-- scroll-nav-wrap end-->
+                <!-- hero-wrap-->
+                <div class="hero-wrap" id="sec1" data-scrollax-parent="true">
+                    <!-- hero-inner-->
+                    <div class="hero-inner fl-wrap full-height">
+                        <!-- half-slider-wrap-->
+                        <!-- half-slider-img-wrap-->
+                        <div class="half-slider-img-wrap">
+                            <!-- half-slider-img-->
+                            <div class="half-slider-img fl-wrap full-height">
+                                <!-- half-slider-img item-->
+                                {% for slide in slides %}
+                                <div class="half-slider-img-item">
+                                    <div class="bg"  data-bg="{{ slide.slideimg|thumbnail_url:'slide' }}" data-scrollax="properties: { translateY: '250px' }" ></div>
+                                    <div class="overlay"></div>
+                                </div>
+                                {% endfor %}
+                                <!-- half-slider-img item end-->
+                            </div>
+                            <!-- half-slider-img end-->
+                        </div>
+                        <!-- half-slider-img-wrap end-->
+                        <!-- slider-carousel-wrap-->
+                        <div class="half-slider-wrap  slider-carousel-wrap fl-wrap  full-height">
+                            <!-- slider-nav-->
+                            <div class="slider-nav cur_carousel-slider-container" data-slick='{"autoplay": true, "autoplaySpeed": 4000 , "pauseOnHover": false}'>
+                                <!-- half-slider-item-->
+                                {% for slide in slides %}
+                                <div class="half-slider-item fl-wrap">
+                                    <div class="half-hero-wrap">
+                                        <h1>{{ slide.title|safe }}</h1>
+                                        <h4>{{ slide.description }}</h4>
+                                        <div class="clearfix"></div>
+                                        <a href="{{ slide.linkbutton }}" class="custom-scroll-link btn float-btn flat-btn color-btn mar-top">{{ slide.namebutton }}</a>
+                                    </div>
+
+                                </div>
+                                {% endfor %}
+                                <!-- half-slider-item end-->
+                            </div>
+                            <!--  slider nav end-->
+                            <div class="sp-cont sarr-contr sp-cont-prev"><i class="fal fa-arrow-left"></i></div>
+                            <div class="sp-cont sarr-contr sp-cont-next"><i class="fal fa-arrow-right"></i></div>
+                            <div class="slider-nav-counter"></div>
+                        </div>
+                        <!-- half-slider-wrap end-->
+                        <!--hero dec-->
+                        <div class="half-bg-dec" data-ran="12"></div>
+                        {% for adinfo in adslide %}
+                        <div class="hero-decor-numb"><span>{{ adinfo.koordinata_1 }}  </span><span>{{ adinfo.koordinata_2 }} </span> <a href="{{ adinfo.link_to_map }}" target="_blank" class="hero-decor-numb-tooltip">{{ adinfo.geoname }}</a></div>
+                        {% endfor %}
+                        <div class="pattern-bg"></div>
+                        <div class="hero-line-dec"></div>
+                    </div>
+                    <!--hero dec end-->
+                </div>
+                <!-- hero-wrap end-->
+                <!-- Content-->
+                <div class="content">
+                    <!-- section-->
+                    <section data-scrollax-parent="true" id="sec2">
+                        <div class="section-subtitle"  data-scrollax="properties: { translateY: '-250px' }" > <span>//</span>Teacher  </div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="collage-image fl-wrap">
+                                        {% for aboutme in about %}
+                                        <div class="collage-image-title" data-scrollax="properties: { translateY: '150px' }">{{ aboutme.name }}</div>
+                                            <img src="{{ aboutme.prepodimg|thumbnail_url:'about' }}" class="respimg" alt="">
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    {% for me in about %}
+                                    <div class="main-about fl-wrap">
+                                        <h5>{{ me.minititle }}</h5>
+                                        <h2>{{ me.title|safe }}</h2>
+                                        <p>{{ me.textabout }}</p>
+                                        <!-- features-box-container -->
+                                        {% endfor %}
+                                        <div class="features-box-container fl-wrap">
+
+                                            <div class="row">
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-parallax-module" data-position-top="90"  data-position-left="25" data-scrollax="properties: { translateY: '-250px' }"></div>
+                        <div class="bg-parallax-module" data-position-top="70"  data-position-left="70" data-scrollax="properties: { translateY: '150px' }"></div>
+                        <div class="sec-lines"></div>
+                    </section>
+                    <!-- section end-->
+                    <!-- section-->
+                    {% for some in someaboutme %}
+                    <section class="parallax-section dark-bg sec-half parallax-sec-half-right" data-scrollax-parent="true">
+                        <div class="bg par-elem"  data-bg="{{ some.someimg|thumbnail_url:'slide' }}" data-scrollax="properties: { translateY: '30%' }"></div>
+                        <div class="overlay"></div>
+                        <div class="container">
+                            <div class="section-title">
+                                <h2>{{ some.zagolovok|safe }}</h2>
+                                <p style="font-size:14px;">{{ some.description }}</p>
+                                <div class="horizonral-subtitle"><span>{{ some.titleleft }}</span></div>
+                            </div>
+                            <div class="fl-wrap facts-holder">
+                                <!-- inline-facts -->
+                                {% for counter in counteres %}
+                                <div class="inline-facts-wrap">
+                                    <div class="inline-facts">
+                                        <div class="milestone-counter">
+                                            <div class="stats animaper">
+                                                <div class="num" data-content="0" data-num="{{ counter.counter_1 }}">0</div>
+                                            </div>
+                                        </div>
+                                        <h6>{{ counter.counter_name_1 }}</h6>
+                                    </div>
+                                </div>
+                                <!-- inline-facts end -->
+                                <!-- inline-facts  -->
+                                <div class="inline-facts-wrap">
+                                    <div class="inline-facts">
+                                        <div class="milestone-counter">
+                                            <div class="stats animaper">
+                                                <div class="num" data-content="0" data-num="{{ counter.counter_2 }}">0</div>
+                                            </div>
+                                        </div>
+                                        <h6>{{ counter.counter_name_2 }}</h6>
+                                    </div>
+                                </div>
+                                <!-- inline-facts end -->
+                                <!-- inline-facts  -->
+                                <div class="inline-facts-wrap">
+                                    <div class="inline-facts">
+                                        <div class="milestone-counter">
+                                            <div class="stats animaper">
+                                                <div class="num" data-content="0" data-num="{{ counter.counter_3 }}">0</div>
+                                            </div>
+                                        </div>
+                                        <h6>{{ counter.counter_name_3 }}</h6>
+                                    </div>
+                                </div>
+                                <!-- inline-facts end -->
+                            {% endfor %}
+                            </div>
+                        </div>
+                    </section>
+                    {% endfor %}
+                    <!-- section end-->
+                    <!-- section-->
+                    <section data-scrollax-parent="true" id="sec3">
+                        <div class="section-subtitle"  data-scrollax="properties: { translateY: '-250px' }" >My Resume  <span>//</span></div>
+                        <div class="container">
+                            <!-- section-title -->
+                            <div class="section-title fl-wrap">
+                                {% for rsm in resume %}
+                                <h3>{{ rsm.minizagolovok }}</h3>
+                                <h2>{{ rsm.zagolovok|safe }}</h2>
+                                <p style="font-size: 14px;">
+                                   {{ rsm.description|safe }}
+                                </p>
+                                {% endfor %}
+                            </div>
+                            <!-- section-title end -->
+                            <!-- custom-inner-holder -->
+                            <div class="custom-inner-holder">
+                                <!-- custom-inner -->
+                                {% for elementres in resumeelement %}
+                                <div class="custom-inner">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="custom-inner-header workres">
+                                                <i class="fa fa-briefcase"></i>
+                                                <h3>{{ elementres.title }}</h3>
+                                                <span>{{ elementres.period }}</span>
+                                            </div>
+                                            <div class="ci-num"><span>{{ elementres.nomer }} - </span></div>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="custom-inner-content fl-wrap">
+                                                <h4>{{ elementres.titleright }}</h4>
+                                                <p>{{ elementres.description|safe }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                <!-- custom-inner end -->
+
+                            </div>
+                            <!-- custom-inner-holder -->
+
+                        </div>
+                        <div class="sec-lines"></div>
+                    </section>
+                    <!-- section end-->
+                    <!-- section  -->
+                    {% for vid in myvideo %}
+                    <section class="dark-bg sinsec-dec sinsec-dec2">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="video-box fl-wrap">
+                                        <img src="{%  static 'images/all/2.jpg' %}" class="respimg" alt="">
+                                        <a class="video-box-btn color-bg image-popup" href="{{ vid.video }}"><i class="fal fa-play" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="video-promo-text fl-wrap mar-top">
+                                        <h3>{{ vid.title }}</h3>
+                                        <p>{{ vid.description }}</p>
+                                        <a href="{{ vid.linkcanal }}" class="btn float-btn flat-btn color-btn mar-top">{{ vid.namebutton }}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="half-bg-dec single-half-bg-dec" data-ran="12"></div>
+                        <div class="sec-lines"></div>
+                    </section>
+                    {% endfor %}
+                    <!-- sectio endn-->
+
+
+
+
+                    <!--section -->
+                    {% for ur in urok %}
+                    <section class="dark-bg" id="sec5">
+                        <div class="fet_pr-carousel-title">
+                            <div class="fet_pr-carousel-title-item">
+                                <h3>{{ ur.title }}</h3>
+                                <p>{{ ur.description }}</p>
+                            </div>
+                        </div>
+                        <!--slider-carousel-wrap -->
+                        <div class="slider-carousel-wrap fl-wrap">
+                            <!--fet_pr-carousel -->
+                            <div class="fet_pr-carousel cur_carousel-slider-container fl-wrap">
+                                <!--slick-item -->
+                                {% for itmu in itemurok %}
+                                <div class="slick-item">
+                                    <div class="fet_pr-carousel-box">
+                                        <div class="fet_pr-carousel-box-media fl-wrap">
+                                            <img src="{{ itmu.itemimg|thumbnail_url:'itemurok' }}" class="respimg" alt="">
+                                            <a href="{{ itmu.itemimg.url }}" class="fet_pr-carousel-box-media-zoom   image-popup"><i class="fal fa-search"></i></a>
+                                        </div>
+                                        <div class="fet_pr-carousel-box-text fl-wrap">
+                                            <h3>{{ itmu.title }}</h3>
+                                            <div class="fet_pr-carousel-cat">{{ itmu.podtitle }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                <!--slick-item end -->
+
+                            </div>
+                            <!--fet_pr-carousel end -->
+                            <div class="sp-cont sp-arr sp-cont-prev"><i class="fal fa-long-arrow-left"></i></div>
+                            <div class="sp-cont sp-arr sp-cont-next"><i class="fal fa-long-arrow-right"></i></div>
+                        </div>
+                        <!--slider-carousel-wrap end-->
+                        <div class="fet_pr-carousel-counter"></div>
+                    </section>
+                    {% endfor %}
+                    <!-- section end -->
+                    <!--section -->
+                    <section  data-scrollax-parent="true" id="sec6">
+                        <div class="section-subtitle"  data-scrollax="properties: { translateY: '-250px' }" >Information<span>//</span></div>
+                        <div class="container">
+                            {% for tblock in textblock %}
+                            <div class="section-title fl-wrap">
+                                <h2>{{ tblock.zagolovok|safe }}</h2>
+                                <p style="font-size: 14px;">{{ tblock.text_in_block }}</p>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <!-- client-list -->
+
+                        <div class="sec-lines"></div>
+                    </section>
+                    <!-- section end -->
+                    <!-- section-->
+                    <section class="dark-bg2 small-padding order-wrap">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h3>Связаться со мной</h3>
+                                </div>
+                                <div class="col-md-4"><a href="{% url 'contact:contact' %}" class="btn flat-btn color-btn">Контакты</a> </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- section end-->
+                </div>
+                <!-- Content end -->
+{% endblock content %}

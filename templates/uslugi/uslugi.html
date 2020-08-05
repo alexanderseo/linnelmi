@@ -1,0 +1,95 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load thumbnail %}
+{% block title %}{% for usl in uslugi %}{{ usl.title }}{% endfor %}{% endblock %}
+{% block META_description %}
+    {% spaceless %}
+        {% for usl in uslugi %}
+            {{ usl.description }}
+        {% endfor %}
+    {% endspaceless %}
+{% endblock %}
+{% block content %}
+ <!--wrapper-->
+            <div id="wrapper" class="single-page-wrap">
+                <!-- Content-->
+                <div class="content">
+                    <div class="single-page-decor"></div>
+                    <div class="single-page-fixed-row">
+                        <div class="scroll-down-wrap">
+                            <div class="mousey">
+                                <div class="scroller"></div>
+                            </div>
+                            <span>Прокручивай вниз</span>
+                        </div>
+                        <a href="{% url 'home:index' %}" class="single-page-fixed-row-link"><i class="fal fa-arrow-left"></i> <span>Обратно на главную</span></a>
+                    </div>
+                    <!-- section-->
+                    <section class="parallax-section dark-bg sec-half parallax-sec-half-right" data-scrollax-parent="true">
+                        {% for usluges in uslugi %}
+                        <div class="bg par-elem"  data-bg="{{ usluges.uslugiimg|thumbnail_url:'slide' }}" data-scrollax="properties: { translateY: '30%' }"></div>
+                        <div class="overlay"></div>
+                        <div class="pattern-bg"></div>
+                        <div class="container">
+                            <div class="section-title">
+                                <h2>{{ usluges.name|safe }}</h2>
+                                <p style="font-size: 14px;">{{ usluges.minidescription }}</p>
+                                <div class="horizonral-subtitle"><span>Lessons</span></div>
+                            </div>
+                            <a href="#sec1" class="custom-scroll-link hero-start-link"><span>Let's Start</span> <i class="fal fa-long-arrow-down"></i></a>
+                        </div>
+                        {% endfor %}
+                    </section>
+                    <!-- section end-->
+                    <!-- section end-->
+                    <section data-scrollax-parent="true" id="sec1">
+                        <div class="section-subtitle right-pos"  data-scrollax="properties: { translateY: '-250px' }"><span>//</span>Course</div>
+                        <div class="container">
+                            <!-- team-box   -->
+                            {% for dlu in det_list_uslugi %}
+                            <div class="team-box">
+                                <div class="team-photo">
+                                    <div class="overlay"></div>
+                                    <a href="{{ dlu.slug }}">Подробне</a>
+                                    <img src="{{ dlu.uslugaimg|thumbnail_url:'minusluga' }}" alt="" class="respimg">
+                                </div>
+                                <div class="team-info">
+                                    <h3>{{ dlu.name }}</h3>
+
+                                    <p>{{ dlu.minitext|truncatewords:15 }}</p>
+                                    <ul class="team-social">
+                                        <li><span>{{ dlu.date_pub|date:"d b. Y" }}</span></li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            <!-- team-box end -->
+
+
+
+
+                        </div>
+                        <div class="bg-parallax-module" data-position-top="50"  data-position-left="20" data-scrollax="properties: { translateY: '-250px' }"></div>
+                        <div class="bg-parallax-module" data-position-top="40"  data-position-left="70" data-scrollax="properties: { translateY: '150px' }"></div>
+                        <div class="bg-parallax-module" data-position-top="80"  data-position-left="80" data-scrollax="properties: { translateY: '350px' }"></div>
+                        <div class="bg-parallax-module" data-position-top="95"  data-position-left="40" data-scrollax="properties: { translateY: '-550px' }"></div>
+                        <div class="sec-lines"></div>
+                    </section>
+                    <!-- section end-->
+                    <!-- section-->
+                    <section class="dark-bg2 small-padding order-wrap">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h3>Желаете задать вопрос?</h3>
+                                </div>
+                                <div class="col-md-4"><a href="{% url 'contact:contact' %}" class="btn flat-btn color-btn">Контакты</a> </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- section end-->
+                </div>
+                <!-- Content end -->
+
+{% endblock content %}

@@ -1,0 +1,127 @@
+{% extends 'layouts/base.html' %}
+{% load blog_tags %}
+{% load static %}
+{% load thumbnail %}
+{% block title %}{{ post.title }}{% endblock %}
+{% block content %}
+            <!--wrapper-->
+            <div id="wrapper" class="single-page-wrap">
+                <!-- Content-->
+                <div class="content">
+                    <div class="single-page-decor"></div>
+                    <!-- single-page-fixed-row-->
+                    <div class="single-page-fixed-row blog-single-page-fixed-row">
+                        <div class="scroll-down-wrap">
+                            <div class="mousey">
+                                <div class="scroller"></div>
+                            </div>
+                            <span>Крути вниз</span>
+                        </div>
+                        <!-- filter  -->
+                        <div class="blog-filters">
+                            <span>Фильтр по: </span>
+
+                            <!-- filter category    -->
+                            <div class="category-filter blog-btn-filter">
+                                <div class="blog-btn">Категории <i class="fa fa-list-ul" aria-hidden="true"></i></div>
+                                <ul>
+                                    {% for categori in categories %}
+                                    <li><a href="{{ categori.get_absolute_url }}">{{ categori.name }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <!-- filter category end  -->
+                            <div class="blog-search">
+                                <form action="#" class="searh-inner fl-wrap">
+                                    <input name="se" id="se" type="text" class="search" placeholder="Search.." value="Search..." />
+                                    <button class="search-submit color-bg" id="submit_btn"><i class="fa fa-search"></i> </button>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- filter end    -->
+                    </div>
+                    <!-- single-page-fixed-row end-->
+                    <!-- section end-->  
+                    <!-- section --> 
+                    <section data-scrollax-parent="true" id="sec1">
+                        <div class="section-subtitle left-pos"  data-scrollax="properties: { translateY: '-250px' }" ><span>//</span>Post title</div>
+                        <div class="container">
+                            <!-- blog-container  -->
+                            <div class="fl-wrap post-container">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <!-- post -->
+                                        <div class="post fl-wrap fw-post">
+                                            <h2><span>{{ post.name_post }}</span></h2>
+                                            <div class="parallax-header"> <span>{{ post.date_pub|date:"d M Y" }}</span><span>Категория : </span><span>{{ post.categories }}</span></div>
+                                            <!-- blog media -->
+                                            <div class="blog-media fl-wrap nomar-bottom">
+                                                <div class="single-slider-wrap slider-carousel-wrap ">
+                                                    <div class="single-slider cur_carousel-slider-container fl-wrap"  >
+                                                        <div class="slick-slide-item"><img src="{% if post.img_post %}{{ post.img_post.url }}{% else %}{% static 'images/folio/1.jpg' %}{% endif %}" width="800" alt="{{ post.name_post }}"></div>
+                                                    </div>
+                                                    <div class="sp-cont   sp-cont-prev"><i class="fal fa-long-arrow-left"></i></div>
+                                                    <div class="sp-cont   sp-cont-next"><i class="fal fa-long-arrow-right"></i></div>
+                                                </div>
+                                            </div>
+                                            <!-- blog media end -->
+                                            <div class="parallax-header fl-wrap"></div>
+                                            <div class="blog-text fl-wrap">
+                                                <div class="clearfix"></div>
+                                                <h3>{{ post.name_post }}</h3>
+                                                <p>{{ post.post_body|safe }}</p>
+                                                <ul class="post-counter single-post-counter">
+                                                    <li><i class="fa fa-eye"></i><span>687</span></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <!-- post end-->
+
+
+                                    </div>
+                                    <!-- blog-sidebar  -->
+                                    <div class="col-md-4">
+                                        <div class="blog-sidebar fl-wrap fixed-bar">
+
+                                            <!-- widget-wrap -->
+                                            {% widget_blog_posts %}
+                                            <!-- widget-wrap end  --> 
+
+                                            <!-- widget-wrap -->
+                                            {% widget_blog_category %}
+                                            <!-- widget-wrap end  -->                                                                                                                                          
+                                        </div>
+                                    </div>
+                                    <!-- blog-sidebar end -->
+                                    <div class="limit-box fl-wrap"></div>
+                                </div>
+                                <!-- content-nav -->
+                                <div class="content-nav">
+
+                                </div>
+                                <!-- content-nav end-->     
+                            </div>
+                            <!-- blog-container end    -->
+                        </div>
+                        <div class="bg-parallax-module" data-position-top="50"  data-position-left="20" data-scrollax="properties: { translateY: '-250px' }"></div>
+                        <div class="bg-parallax-module" data-position-top="40"  data-position-left="70" data-scrollax="properties: { translateY: '150px' }"></div>
+                        <div class="bg-parallax-module" data-position-top="80"  data-position-left="80" data-scrollax="properties: { translateY: '350px' }"></div>
+                        <div class="bg-parallax-module" data-position-top="95"  data-position-left="40" data-scrollax="properties: { translateY: '-550px' }"></div>
+                        <div class="sec-lines"></div>
+                    </section>
+                    <!-- section end-->              
+                    <!-- section-->
+                    <section class="dark-bg2 small-padding order-wrap">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h3>Связаться со мной</h3>
+                                </div>
+                                <div class="col-md-4"><a href="{% url 'contact:contact' %}" class="btn flat-btn color-btn">Контакты</a> </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- section end-->
+                </div>
+                <!-- Content end -->
+    {% endblock %}

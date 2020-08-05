@@ -1,0 +1,83 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load thumbnail %}
+{% block title %}{% for matr in material %}{{ matr.title }}{% endfor %}{% endblock %}
+{% block content %}
+ <!--wrapper-->
+            <div id="wrapper" class="single-page-wrap">
+                <!-- Content-->
+                <div class="content">
+                    <div class="single-page-decor"></div>
+                    <div class="single-page-fixed-row">
+                        <div class="scroll-down-wrap">
+                            <div class="mousey">
+                                <div class="scroller"></div>
+                            </div>
+                            <span>Прокручивай вниз</span>
+                        </div>
+                        <a href="{% url 'home:index' %}" class="single-page-fixed-row-link"><i class="fal fa-arrow-left"></i> <span>Обратно на главную</span></a>
+                    </div>
+                    <!-- section-->
+                    {% for matr in material %}
+                    <section class="dark-bg no-padding">
+                        <div class="hidden-info-wrap-bg">
+                            <div class="bg-ser">
+                              <img src="{{ matr.matimg|thumbnail_url:'materimg'}}" />
+                            </div>
+                            <div class="overlay"></div>
+                        </div>
+                        <!--   hidden-info-wrap -->
+                        <div class="hidden-info-wrap">
+                            <div class="hidden-info fl-wrap">
+
+                                <div class="hidden-info-title">{{ matr.h1 }}</div>
+                                {% endfor %}
+                                <div class="hidden-works-list fl-wrap">
+                                    <!--   hidden-works-item -->
+                                    {% for mater in materialdoc %}
+                                    <div class="hidden-works-item fl-wrap" data-bgscr="images/bg/long/1.jpg">
+                                        <div class="hidden-works-item-media">
+                                            <div class="hidden-works-item-media-img fl-wrap">
+
+
+                                            </div>
+                                            <span>{{ mater.pk }}</span>
+                                        </div>
+                                        <div class="hidden-works-item-text">
+                                            <h3><a href="portfolio-single.html">{{ mater.title }}</a></h3>
+                                            <ul>
+                                                <li><a href="{{mater.docfile.url }}" download>Скачать</a></li>
+                                                <li><a href="{{mater.docfile.url }}">Открыть</a></li>
+                                                <li><span>{{ mater.publish|date:"d b. Y" }}</span></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                    <!--   hidden-works-item end -->
+
+
+
+
+                                </div>
+                                <div class="hidden-info-pagination"></div>
+                            </div>
+                        </div>
+                        <!-- hidden-info-wrap end -->
+                        <div class="fl-wrap limit-box"></div>
+                    </section>
+                    <!-- section end-->
+                    <!-- section-->
+                    <section class="dark-bg2 small-padding order-wrap">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h3>Желаете задать вопрос?</h3>
+                                </div>
+                                <div class="col-md-4"><a href="{% url 'contact:contact' %}" class="btn flat-btn color-btn">Контакты</a> </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- section end-->
+                </div>
+                <!-- Content end -->
+{% endblock content %}
